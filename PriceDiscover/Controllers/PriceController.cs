@@ -1,26 +1,21 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using EventBus;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WishList.Controllers
+namespace PriceDiscover.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class PriceController : Controller
     {
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
             var integration = new IntegrationEvent();
-            var msg = integration.Read();
 
-            Thread.Sleep(2000);
-
-            return new string[] { msg, "t" };
+            integration.Publish("Teste de mensagem");
+            
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
